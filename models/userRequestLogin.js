@@ -14,15 +14,15 @@ const userRequestLoginSchema = mongoose.Schema({
 const UserRequestLogin = mongoose.model('UserLoginModel', userRequestLoginSchema);
 
 // add new user to login database
-const addUserLogin = (newUser, callback) => {
+const addUserLogin = (newUser) => {
   const user = new UserRequestLogin(newUser);
-  user.save(callback);
+  return user.save();
 };
 
 // search user by Phone number
-const getUserByPhoneLogin = (phone, callback) => {
+const getUserByPhoneLogin = (phone) => {
   const query = { phone };
-  UserRequestLogin.findOne(query, callback).sort({ $natural: -1 });
+  return UserRequestLogin.findOne(query).sort({ $natural: -1 });
 };
 
 

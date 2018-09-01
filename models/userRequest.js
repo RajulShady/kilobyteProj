@@ -18,31 +18,31 @@ const userRequestSchema = mongoose.Schema({
 
 const UserRequest = mongoose.model('UserSignupModel', userRequestSchema);
 
-const addPhoneAndOtp = (userOtp, callback) => {
+const addPhoneAndOtp = (userOtp) => {
   const userotp = new UserRequest(userOtp);
-  userotp.save(callback);
+  return userotp.save();
 };
 
-const getUserByOtp = (otpcode, callback) => {
+const getUserByOtp = (otpcode) => {
   const query = { otpcode };
-  UserRequest.findOne(query, callback);
+  return UserRequest.findOne(query);
 };
 
-const getUserbyNumber = (phone, callback) => {
+const getUserbyNumber = (phone) => {
   const query = { phone };
-  UserRequest.findOne(query, callback);
+  return UserRequest.findOne(query);
 };
 
-const updateOtp = (userDetail, callback) => {
+const updateOtp = (userDetail) => {
   const { phone, otpcode } = userDetail;
   const query = { phone };
-  UserRequest.updateOne(query, { $set: { phone, otpcode, isVerified: false } }, callback);
+  UserRequest.updateOne(query, { $set: { phone, otpcode, isVerified: false } });
 };
 
-const updateIsVerified = (updatedUserDetail, callback) => {
+const updateIsVerified = (updatedUserDetail) => {
   const { phone, otpcode } = updatedUserDetail;
   const query = { phone };
-  UserRequest.updateOne(query, { $set: { phone, otpcode, isVerified: true } }, callback);
+  UserRequest.updateOne(query, { $set: { phone, otpcode, isVerified: true } });
 };
 
 module.exports = {

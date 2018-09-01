@@ -4,14 +4,14 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
-const config = require('./config/database');
-const userRoute = require('./routes/users');
+const config = require('./config/configurations');
+const userRoute = require('./modules/user/user-route');
 
 // Database connections
-mongoose.connect(config.database);
+console.log(config.mongo.url);
+mongoose.connect(config.mongo.url);
 mongoose.connection.on('connected', () => {
-  console.log(`Database connected at ${config.database}`);
+  console.log(`Database connected at ${config.port}`);
 });
 mongoose.connection.on('error', (err) => {
   console.log(`Database error ${err}`);
@@ -34,9 +34,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/user', userRoute);
-
 // Routes
+app.use('/user', userRoute);
 app.get('/', (req, res) => {
   res.json({ message: 'Not a place to visit' });
 });

@@ -10,26 +10,33 @@ const UserSchema = mongoose.Schema({
   email: {
     type: String,
     unique: true,
+    trim: true,
+    minlength: 5,
     validate: [isEmail, 'Invalid Email'],
   },
   phone: {
     type: Number,
     required: true,
+    min: 6,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
   },
 });
 
 const User = mongoose.model('UserModel', UserSchema);
 
 // add new user to database
-const addUser = (newUser, callback) => {
-  const user = Object.assign(newUser);
-  user.save(callback);
+const addUser = (newUser) => {
+  const user = new User(newUser);
+  return user.save();
 };
 
 // search user by Phone number
-const getUserByPhone = (phone, callback) => {
+const getUserByPhone = (phone) => {
   const query = { phone };
-  User.findOne(query, callback);
+  return User.findOne(query);
 };
 
 module.exports = {
