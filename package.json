@@ -1,0 +1,33 @@
+{
+  "name": "otplogin",
+  "version": "1.0.0",
+  "description": "User Authentication through otp",
+  "main": "App.js",
+  "scripts": {
+    "start": "node App.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "*",
+    "mongoose-validator": "^2.0.2",
+    "nexmo": "^2.3.2",
+    "nodemon": "^1.18.4",
+    "sendotp": "^1.2.9",
+    "springedge": "^1.0.5",
+    "textmagic-rest-client": "^1.0.10",
+    "validator": "^10.5.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
