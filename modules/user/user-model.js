@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 
-// model for new user
+// MODEL FOR NEW USER
 const UserSchema = mongoose.Schema({
   name: {
     type: String,
@@ -27,13 +27,13 @@ const UserSchema = mongoose.Schema({
 
 const User = mongoose.model('UserModel', UserSchema);
 
-// add new user to database
+// ADD NEW USER TO DATABASE
 const addUser = (newUser) => {
   const user = new User(newUser);
   return user.save();
 };
 
-// search user by Phone number
+// SEARCH USER BY PHONE NUMBER
 const getUserByPhone = (phone) => {
   const query = { phone };
   return User.findOne(query);

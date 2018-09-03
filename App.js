@@ -6,9 +6,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./config/configurations');
 const userRoute = require('./modules/user/user-route');
+const { ErrorMessages } = require('./constants');
 
-// Database connections
-console.log(config.mongo.url);
+// DATABASE CONNECTIONS
 mongoose.connect(config.mongo.url);
 mongoose.connection.on('connected', () => {
   console.log(`Database connected at ${config.port}`);
@@ -17,7 +17,7 @@ mongoose.connection.on('error', (err) => {
   console.log(`Database error ${err}`);
 });
 
-// MiddleWares
+// MIDDLEWARES
 app.use(bodyParser.urlencoded({
   extended: 'true',
 }));
@@ -34,11 +34,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// ROUTES
 app.use('/user', userRoute);
-app.get('/', (req, res) => {
-  res.json({ message: 'Not a place to visit' });
+app.get('*', (req, res) => {
+  res.send({ message: ErrorMessages.INVALID_ENDPOINT });
 });
 
-// server listening at port
+// SERVER LISTENING AT PORT
 app.listen(config.port);

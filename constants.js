@@ -11,9 +11,21 @@ const ErrorMessages = {
   UNAUTHORIZED: 'Unauthorized',
   USER_NOT_FOUND: 'User does not exist',
   INVALID_OTP: 'Invalid OTP',
+  INVALID_ENDPOINT: 'Try some other Endpoint',
+  INTERNAL_SERVER_ERROR: 'Internal Server Error',
+  INVALID_DETAILS: 'Invalid Details',
+};
+
+const OtherStrings = {
+  DEVELOPMENT_DATABASE: 'mongodb://localhost:27017/ankart',
+  PRODUCTION_DATABASE: 'XXXX',
+  JWT_SECRETKEY: 'osddjkkjo$H$OHO$iohoiah$$$%jjhhddk',
+  MSG91_AUTH_KEY: '234740A7i6CybXQa65b88c37a',
+  DB_PORT: 8080,
 };
 
 module.exports = {
   SuccessMessages,
   ErrorMessages,
+  OtherStrings,
 };

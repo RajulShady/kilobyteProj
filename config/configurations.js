@@ -1,6 +1,6 @@
-const _ = require('lodash');
+const _ = require('lodash.merge');
 const dotenv = require('dotenv');
-
+const { OtherStrings } = require('../constants');
 
 dotenv.config();
 
@@ -10,20 +10,20 @@ const environment = process.env.NODE_ENV || 'DEVELOPMENT';
 const config = {
   DEVELOPMENT: {
     mongo: {
-      url: process.env.DB_URI || 'mongodb://localhost:27017/ankart',
+      url: process.env.DB_URI || OtherStrings.DEVELOPMENT_DATABASE,
     },
   },
   PRODUCTION: {
     mongo: {
-      url: process.env.DB_URI || 'xxxxx',
+      url: process.env.DB_URI || OtherStrings.PRODUCTION_DATABASE,
     },
   },
 };
 
 const others = {
-  jwtSecret: 'osddjkkjo$H$OHO$iohoiah$$$%jjhhddk',
-  msg91AuthKey: '234740A7i6CybXQa65b88c37a',
-  port: process.env.PORT || 8080,
+  jwtSecret: OtherStrings.JWT_SECRETKEY,
+  msg91AuthKey: OtherStrings.MSG91_AUTH_KEY,
+  port: process.env.PORT || OtherStrings.DB_PORT,
 };
 
-module.exports = _.merge(config[environment], others);
+module.exports = _(config[environment], others);

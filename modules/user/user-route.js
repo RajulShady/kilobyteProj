@@ -12,7 +12,8 @@ const controller = require('./user-controller');
 // const { getOtp } = require('../utils/otpGenerator');
 
 
-// declare variables
+// DECLARED VARIABLES
+
 // let newUser = {};
 // const loginUser = {};
 // let userReqObj = {};
@@ -21,13 +22,34 @@ const controller = require('./user-controller');
 // const otpcodeLogin = getOtp();
 // const userLogin = {};
 
-// Singup route
+// SIGNUP ROUTE
 router.post('/signup', (req, res) => {
   const data = { ...req.body };
   controller.signup(data, res);
 });
 
-// Signup Implementation
+// SIGNUP OTP VERIFICATION
+router.post('/signup/verify', (req, res) => {
+  const data = { ...req.body };
+  controller.otpVerify(data, res);
+});
+
+// LOGIN ROUTE
+router.post('/login', (req, res) => {
+  const data = { ...req.body };
+  controller.login(data, res);
+});
+
+// LOGIN OTP VERIFICATION
+router.post('/login/verify', (req, res) => {
+  const data = { ...req.body };
+  controller.loginVerify(data, res);
+});
+
+module.exports = router;
+
+// SIGNUP IMPLEMENTATION
+
 // newUser = new User({
 //   name: req.body.name,
 //   email: req.body.email,
@@ -75,11 +97,9 @@ router.post('/signup', (req, res) => {
 //   }
 // });
 
-router.post('/signup/verify', (req, res) => {
-  const data = { ...req.body };
-  controller.otpVerify(data, res);
-});
-// Signup OTP Verifcation
+
+// SIGNUP OTP VERIFICATION
+
 // const updatedUserDetail = {
 //   phone: req.body.phone,
 //   otpcode: req.body.otpcode,
@@ -108,7 +128,8 @@ router.post('/signup/verify', (req, res) => {
 //   }
 // });
 
-// nexmo implementation
+// NEXMO IMPLEMENTATION
+
 // nexmo.verify.check({request_id: requestId, code: otpcodeSignup}, (err, result) => {
 // if(err) {
 //   res.send({success: false, msg: "unable to verify phone number"});
@@ -129,13 +150,8 @@ router.post('/signup/verify', (req, res) => {
 // });
 
 
-// login route
-router.post('/login', (req, res) => {
-  const data = { ...req.body };
-  controller.login(data, res);
-});
+// LOGIN IMPLEMENTATION
 
-// Login Implementation
 // const phoneNumber = req.body.phone;
 // getUserbyNumber(phoneNumber, (err, user) => {
 //   if (err) {
@@ -159,13 +175,8 @@ router.post('/login', (req, res) => {
 // });
 
 
-// Login otp verification
-router.post('/login/verify', (req, res) => {
-  const data = { ...req.body };
-  controller.loginVerify(data, res);
-});
+// LOGIN OTP VERIFICATION
 
-// Login otp verification
 // const loginUserDetail = {
 //   phone: req.body.phone,
 //   otpcode: req.body.otpcode,
@@ -180,7 +191,8 @@ router.post('/login/verify', (req, res) => {
 //   }
 // });
 
-// nexmo implementation
+// NEXMO IMPLEMENTATION
+
 // nexmo.verify.check({request_id: requestId, code: otpcodeLogin}, (err, result) => {
 //   if(err) {
 //     res.send({success: false, msg: "unable to verify phone number"});
@@ -204,6 +216,3 @@ router.post('/login/verify', (req, res) => {
 //     }
 //   }
 // });
-
-
-module.exports = router;
